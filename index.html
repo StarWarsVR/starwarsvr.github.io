@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>StarwarsVR</title>
-    <meta name="description" content="StarwarsVR">
-    <script src="assets/aframe.min.js"></script>
+    <title>Starwars</title>
+    <meta name="description" content="Star Wars0">
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
     <script src="assets/d3-threeD.js"></script>
     <script src="assets/SVGLoader.js"></script>
     <script src="components/aframe-audio-visualizer-components.min.js"></script>
@@ -17,6 +17,8 @@
     <script src="components/light-color-copy.js"></script>
     <script src="components/spotlight-target.js"></script>
     <script src="components/svg-extrude-geometry.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+
   </head>
   <body>
     <a-scene antialias="true">
@@ -43,13 +45,13 @@
         <a-mixin id="candle-right" template="src: #candle-template"
                  random-spherical-position="startX: 0; lengthX: 40; lengthY: 180;
                                             radius: 80"></a-mixin>
-        <script id="candle-template" type="text/html">
+        <a-entity id="candle-template" type="text/html">
           <a-entity>
             <a-entity mixin="candlelight" position="0 1 0"></a-entity>
             <a-animation attribute="rotation" dur="3000" from="0 0 -45"
                          to="0 0 45" repeat="indefinite" direction="alternate"></a-animation>
           </a-entity>
-        </script>
+        </a-entity>
       </a-assets>
 
 
@@ -94,7 +96,11 @@
                 color-copy="#banner" rotation="90 0 0"></a-entity>
 
       <!-- Camera. -->
-      <a-entity camera look-controls position="0 5 10"></a-entity>
+      <a-entity id="cameraRig" wasd-controls movement-controls>
+
+        <a-entity camera look-controls position="0 5 10"></a-entity>
+
+      </a-entity>
 
       <a-entity entity-generator="mixin: candle-left; num: 150"></a-entity>
       <a-entity entity-generator="mixin: candle-right; num: 150"></a-entity>
